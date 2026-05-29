@@ -1,0 +1,33 @@
+const components = {
+  "Button": "Visual",
+  "Card": "Visual",
+  "Checkbox": "Visual",
+  "CodeVisualizer": "Visual",
+  "Details": "Visual",
+  "DropDown": "Visual",
+  "ElementCarrousel": "Visual",
+  "FetchManager": "Service",
+  "Grid": "Visual",
+  "HomePage": "AppComponents",
+  "Icon": "Visual",
+  "IndexedDbManager": "Service",
+  "Input": "Visual",
+  "Layout": "Visual",
+  "Link": "Visual",
+  "Loading": "Visual",
+  "LocalStorageManager": "Service",
+  "MultiRoute": "Visual",
+  "Navbar": "Visual",
+  "NotFound": "Visual",
+  "Playground": "AppComponents",
+  "Route": "Visual",
+  "Select": "Visual",
+  "Switch": "Visual",
+  "Table": "Visual",
+  "Tabs": "Visual",
+  "ThemeSelector": "Visual",
+  "TreeItem": "Visual",
+  "TreeView": "Visual"
+};
+
+export default components;
