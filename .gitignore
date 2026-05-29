@@ -137,3 +137,4 @@ dist
 
 # postman
 postman/
+.postman/
