@@ -24,6 +24,16 @@ DATOS DEL USUARIO:
 - Preferencias alimenticias: ${profile.dietPreferences.length > 0 ? profile.dietPreferences.join(", ") : "ninguna"}
 - Nivel de actividad: ${profile.activityLevel}
 
+EQUIPAMIENTO DISPONIBLE: "${profile.availableEquipment || "ninguno"}"
+
+⚠️ REGLA ESTRICTA DE EQUIPAMIENTO:
+- SOLO puedes incluir ejercicios que se realicen con el equipamiento listado arriba
+- Si el usuario dice "no tengo nada", "ninguno" o "sin equipamiento", TODOS los ejercicios deben ser con peso corporal (calistenia, estiramientos, cardio sin equipo)
+- Si el usuario dice "solo mancuernas", NINGÚN ejercicio puede requerir máquinas, barras, piscina ni otro equipamiento
+- Si el usuario menciona equipamiento específico, USA SOLO ESE equipamiento
+- NUNCA sugieras ejercicios con equipamiento que el usuario no tiene
+- Ejemplos de ejercicios sin equipamiento: sentadillas, flexiones, burpees, plancha, zancadas, abdominales, mountain climbers, saltos
+
 PLAN BASE (ejercicios por sesión):
 ${JSON.stringify(preset.exercises, null, 2)}
 
@@ -38,9 +48,10 @@ NUTRICIÓN BASE:
 INSTRUCCIONES:
 1. Usa los ejercicios del plan base como punto de partida para cada día
 2. Si el usuario tiene condiciones médicas, reemplaza o elimina los ejercicios contraindicados
-3. Varía los ejercicios a lo largo de la semana (no repitas los mismos 7 días)
-4. Adapta las comidas a las preferencias alimenticias del usuario
-5. Genera advertencias específicas según las condiciones médicas
+3. Adapta TODOS los ejercicios al equipamiento disponible del usuario
+4. Varía los ejercicios a lo largo de la semana (no repitas los mismos 7 días)
+5. Adapta las comidas a las preferencias alimenticias del usuario
+6. Genera advertencias específicas según las condiciones médicas
 
 Responde ÚNICAMENTE con un JSON válido con esta estructura exacta, sin texto adicional, sin markdown:
 {

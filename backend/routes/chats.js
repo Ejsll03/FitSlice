@@ -3,11 +3,11 @@ import ChatSession from "../models/ChatSession.js";
 import WeeklyPlan from "../models/WeeklyPlan.js";
 import { requireAuth } from "../middleware/auth.js";
 import { chatWithAI } from "../services/aiService.js";
+import { validate, createChatSchema, messageSchema } from "../middleware/validate.js";
 
 const router = express.Router();
 
-// POST /api/chats
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth, validate(createChatSchema), async (req, res) => {
   try {
     const { planId } = req.body;
 
@@ -21,8 +21,7 @@ router.post("/", requireAuth, async (req, res) => {
   }
 });
 
-// POST /api/chats/:id/message
-router.post("/:id/message", requireAuth, async (req, res) => {
+router.post("/:id/message", requireAuth, validate(messageSchema), async (req, res) => {
   try {
     const { content } = req.body;
 
@@ -32,13 +31,10 @@ router.post("/:id/message", requireAuth, async (req, res) => {
     const plan = await WeeklyPlan.findById(chat.planId);
     if (!plan) return res.status(404).json({ error: "Plan no encontrado" });
 
-    // Agregar mensaje del usuario
     chat.messages.push({ role: "user", content });
 
-    // Obtener respuesta de la IA
     const aiResponse = await chatWithAI(chat.messages, plan);
 
-    // Agregar respuesta de la IA
     chat.messages.push({ role: "model", content: aiResponse });
     chat.updatedAt = new Date();
     await chat.save();
@@ -50,7 +46,6 @@ router.post("/:id/message", requireAuth, async (req, res) => {
   }
 });
 
-// GET /api/chats/:id
 router.get("/:id", requireAuth, async (req, res) => {
   try {
     const chat = await ChatSession.findById(req.params.id);

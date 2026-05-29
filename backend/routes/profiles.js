@@ -1,19 +1,19 @@
 import express from "express";
 import UserProfile from "../models/UserProfile.js";
 import { requireAuth } from "../middleware/auth.js";
+import { validate, profileSchema } from "../middleware/validate.js";
 
 const router = express.Router();
 
-// POST /api/profiles
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth, validate(profileSchema), async (req, res) => {
   try {
-    const { age, weight, height, goal, conditions, dietPreferences, activityLevel } = req.body;
+    const { age, weight, height, goal, conditions, dietPreferences, activityLevel, availableEquipment } = req.body;
 
     const bmi = parseFloat((weight / ((height / 100) ** 2)).toFixed(1));
 
     const profile = await UserProfile.findByIdAndUpdate(
       req.session.userId,
-      { age, weight, height, bmi, goal, conditions, dietPreferences, activityLevel },
+      { age, weight, height, bmi, goal, conditions, dietPreferences, activityLevel, availableEquipment },
       { new: true }
     ).select("-passwordHash");
 
@@ -23,7 +23,6 @@ router.post("/", requireAuth, async (req, res) => {
   }
 });
 
-// GET /api/profiles/:id
 router.get("/:id", requireAuth, async (req, res) => {
   try {
     const profile = await UserProfile.findById(req.params.id).select("-passwordHash");
@@ -34,12 +33,11 @@ router.get("/:id", requireAuth, async (req, res) => {
   }
 });
 
-// PUT /api/profiles/:id
-router.put("/:id", requireAuth, async (req, res) => {
+router.put("/:id", requireAuth, validate(profileSchema.partial()), async (req, res) => {
   try {
-    const { weight, height, goal, conditions, dietPreferences, activityLevel } = req.body;
+    const { weight, height, goal, conditions, dietPreferences, activityLevel, availableEquipment } = req.body;
 
-    const updateData = { weight, height, goal, conditions, dietPreferences, activityLevel };
+    const updateData = { weight, height, goal, conditions, dietPreferences, activityLevel, availableEquipment };
     if (weight && height) {
       updateData.bmi = parseFloat((weight / ((height / 100) ** 2)).toFixed(1));
     }
