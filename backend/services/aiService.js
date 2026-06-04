@@ -7,7 +7,7 @@ const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 export async function generateWeeklyPlan(profile) {
   const isAthlete = profile.activityLevel === "very_active";
-  const preset = getPreset(profile.age, profile.goal, isAthlete);
+  const preset = getPreset(profile.age, profile.goal);
   const ageProfile = isAthlete ? "athlete" : getAgeProfile(profile.age);
 
   const prompt = `
