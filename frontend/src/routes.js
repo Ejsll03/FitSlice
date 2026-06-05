@@ -1,16 +1,12 @@
 const routes = [
-   // Rutas principales
-   { path: '/', component: 'HomePage' },
-   { path: '/404', component: 'NotFound' },
-   {
-      path: '/Docum/${category}/${id}',
-      component: 'LandingPage',
-   },
-   {
-      path: "/Playground",
-      component: "Playground",
-   }
-
+  { path: '/', component: 'LoginPage' },
+  { path: '/login', component: 'LoginPage' },
+  { path: '/register', component: 'RegisterPage' },
+  { path: '/onboarding', component: 'OnboardingPage', metadata: { private: true } },
+  { path: '/dashboard', component: 'DashboardPage', metadata: { private: true } },
+  { path: '/chat', component: 'ChatPage', metadata: { private: true } },
+  { path: '/exercises', component: 'ExercisePage', metadata: { private: true } },
+  { path: '/404', component: 'NotFound' },
 ];
 
 export default routes;

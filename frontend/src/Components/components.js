@@ -8,7 +8,6 @@ const components = {
   "ElementCarrousel": "Visual",
   "FetchManager": "Service",
   "Grid": "Visual",
-  "HomePage": "AppComponents",
   "Icon": "Visual",
   "IndexedDbManager": "Service",
   "Input": "Visual",
@@ -19,7 +18,6 @@ const components = {
   "MultiRoute": "Visual",
   "Navbar": "Visual",
   "NotFound": "Visual",
-  "Playground": "AppComponents",
   "Route": "Visual",
   "Select": "Visual",
   "Switch": "Visual",
@@ -27,7 +25,22 @@ const components = {
   "Tabs": "Visual",
   "ThemeSelector": "Visual",
   "TreeItem": "Visual",
-  "TreeView": "Visual"
+  "TreeView": "Visual",
+
+  // FitSlice Services
+  "AuthService": "Service",
+  "ProfileService": "Service",
+  "PlanService": "Service",
+  "ChatService": "Service",
+  "ExerciseService": "Service",
+
+  // FitSlice Pages
+  "LoginPage": "Visual",
+  "RegisterPage": "Visual",
+  "OnboardingPage": "Visual",
+  "DashboardPage": "Visual",
+  "ChatPage": "Visual",
+  "ExercisePage": "Visual",
 };
 
 export default components;
