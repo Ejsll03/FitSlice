@@ -29,6 +29,8 @@ export default class ExercisePage extends HTMLElement {
     } finally {
       loading.stop();
     }
+
+    this.refreshIcons();
   }
 
   render() {
@@ -44,6 +46,7 @@ export default class ExercisePage extends HTMLElement {
     this.renderDayTabs();
     this.renderExercises();
     this.renderNutrition();
+    this.refreshIcons();
   }
 
   renderDayTabs() {
@@ -63,6 +66,7 @@ export default class ExercisePage extends HTMLElement {
         btn.classList.add('active');
         this.renderExercises();
         this.renderNutrition();
+        this.refreshIcons();
       });
     });
   }
@@ -73,7 +77,7 @@ export default class ExercisePage extends HTMLElement {
     const day = this.plan?.days?.find(d => d.day === this.selectedDay);
 
     if (!day?.exercises?.length) {
-      list.innerHTML = '<p class="no-data">Rest day — recovery matters 💪</p>';
+      list.innerHTML = '<p class="no-data">Rest day — recovery matters</p>';
       return;
     }
 
@@ -94,16 +98,22 @@ export default class ExercisePage extends HTMLElement {
             <span class="metric-val">${ex.reps}</span>
           </div>
         </div>
-        <button class="demo-btn" data-name="${ex.name.replace(/"/g, '&quot;')}">▶ Demo</button>
+        <button class="demo-btn" data-name="${this.escapeAttr(ex.name)}" data-english="${this.escapeAttr(ex.englishName || '')}">
+          <i data-lucide="play-circle" class="icon-sm"></i> Demo
+        </button>
       </div>
     `).join('');
 
     list.querySelectorAll('.demo-btn').forEach(btn => {
-      btn.addEventListener('click', () => this.showDemo(btn.dataset.name));
+      btn.addEventListener('click', () => this.showDemo(btn.dataset.name, btn.dataset.english));
     });
   }
 
-  async showDemo(name) {
+  escapeAttr(str) {
+    return (str || '').replace(/"/g, '&quot;');
+  }
+
+  async showDemo(name, englishName) {
     const modal = this.querySelector('#demo-modal');
     const title = this.querySelector('#demo-title');
     const body = this.querySelector('#demo-body');
@@ -113,28 +123,39 @@ export default class ExercisePage extends HTMLElement {
     body.innerHTML = '<p class="demo-loading">Loading demo...</p>';
     modal.style.display = 'flex';
 
+    const searchTerm = englishName && englishName.trim() ? englishName.trim() : name;
+
     try {
       const exerciseService = await slice.getComponent('ExerciseService');
-      const result = await exerciseService.searchExercise(name);
+      const result = await exerciseService.searchExercise(searchTerm);
 
       if (result?.gifUrl) {
         let html = `<img src="${result.gifUrl}" alt="${name}" class="demo-gif" />`;
         if (result.instructions?.length) {
           html += '<ol class="demo-instructions">' +
-            result.instructions.map(s => `<li>${s.replace(/^Step \d+:\s*/, '')}</li>`).join('') +
+            result.instructions.map(s => `<li>${s.replace(/^Step \d+:\s*/i, '')}</li>`).join('') +
             '</ol>';
         }
+        html += this.youtubeLinkHtml(name);
         body.innerHTML = html;
       } else {
-        const query = encodeURIComponent(name + ' exercise tutorial');
         body.innerHTML = `
-          <p class="demo-empty">No demo GIF available for this exercise.</p>
-          <a class="demo-yt-link" href="https://www.youtube.com/results?search_query=${query}" target="_blank" rel="noopener">Search on YouTube →</a>
+          <p class="demo-empty">No GIF demo found for this exercise.</p>
+          ${this.youtubeLinkHtml(name)}
         `;
       }
     } catch (err) {
-      body.innerHTML = '<p class="demo-empty">Could not load demo.</p>';
+      body.innerHTML = `<p class="demo-empty">Could not load demo.</p>${this.youtubeLinkHtml(name)}`;
     }
+
+    this.refreshIcons();
+  }
+
+  youtubeLinkHtml(name) {
+    const query = encodeURIComponent(name + ' ejercicio tutorial');
+    return `<a class="demo-yt-link" href="https://www.youtube.com/results?search_query=${query}" target="_blank" rel="noopener">
+      <i data-lucide="youtube" class="icon-sm"></i> Watch on YouTube
+    </a>`;
   }
 
   closeDemo() {
@@ -178,6 +199,10 @@ export default class ExercisePage extends HTMLElement {
         </div>
       </div>
     `).join('');
+  }
+
+  refreshIcons() {
+    if (window.lucide) window.lucide.createIcons();
   }
 
   async getLoading() {

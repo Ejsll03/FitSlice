@@ -121,10 +121,9 @@
 }
 
 .card-link {
-  font-size: 13px;
-  color: var(--cyan);
-  cursor: pointer;
-  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .card-link:hover { opacity: 0.75; }
@@ -244,7 +243,17 @@
   gap: 10px;
 }
 
-.ai-icon { font-size: 20px; }
+.ai-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  background: rgba(0,200,232,0.1);
+  border: 1px solid rgba(0,200,232,0.2);
+  color: var(--cyan);
+}
 
 .ai-label {
   font-family: var(--font-headline);
@@ -260,21 +269,11 @@
   line-height: 1.7;
   font-style: italic;
 }
-
 .btn-outline {
-  background: transparent;
-  border: 1px solid var(--cyan);
-  color: var(--cyan);
-  border-radius: var(--radius-md);
-  font-family: var(--font-headline);
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 11px 16px;
-  cursor: pointer;
-  transition: all 0.2s;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn-outline:hover { background: rgba(0,200,232,0.08); }

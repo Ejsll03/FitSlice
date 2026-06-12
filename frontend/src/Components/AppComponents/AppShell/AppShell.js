@@ -12,13 +12,14 @@ export default class AppShell extends HTMLElement {
   async init() {
     this.renderNav();
     this.bindEvents();
+    this.refreshIcons();
   }
 
   renderNav() {
     const items = [
-      { key: 'dashboard', label: 'Dashboard', icon: '⊞', path: '/dashboard' },
-      { key: 'exercises', label: 'Routine', icon: '🏋️', path: '/exercises' },
-      { key: 'chat', label: 'AI Coach', icon: '💬', path: '/chat' },
+      { key: 'dashboard', label: 'Dashboard', icon: 'layout-dashboard', path: '/dashboard' },
+      { key: 'exercises', label: 'Routine', icon: 'dumbbell', path: '/exercises' },
+      { key: 'chat', label: 'AI Coach', icon: 'message-circle', path: '/chat' },
     ];
 
     const nav = this.querySelector('#shell-nav');
@@ -26,8 +27,8 @@ export default class AppShell extends HTMLElement {
 
     nav.innerHTML = items.map(item => `
       <a class="nav-item ${this.activePage === item.key ? 'active' : ''}" data-path="${item.path}">
-        <span class="nav-item-icon">${item.icon}</span>
-        ${item.label}
+        <i data-lucide="${item.icon}" class="icon-sm"></i>
+        <span>${item.label}</span>
       </a>
     `).join('');
 
@@ -42,9 +43,15 @@ export default class AppShell extends HTMLElement {
     this.querySelector('#theme-btn')?.addEventListener('click', () => this.toggleTheme());
   }
 
+  refreshIcons() {
+    if (window.lucide) window.lucide.createIcons();
+  }
+
   async generatePlan() {
     const btn = this.querySelector('#start-btn');
-    if (btn) { btn.disabled = true; btn.textContent = 'Generating...'; }
+    const label = btn?.querySelector('span');
+    if (btn) { btn.disabled = true; if (label) label.textContent = 'Generating...'; }
+
     try {
       const loading = await this.getLoading();
       loading.start();
@@ -56,7 +63,7 @@ export default class AppShell extends HTMLElement {
     } finally {
       const loading = slice.controller.getComponent('Loading');
       if (loading) loading.stop();
-      if (btn) { btn.disabled = false; btn.textContent = '⚡ Start Session'; }
+      if (btn) { btn.disabled = false; if (label) label.textContent = 'Start Session'; }
     }
   }
 

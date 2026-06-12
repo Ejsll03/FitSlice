@@ -16,6 +16,8 @@ export default class ChatPage extends HTMLElement {
     this.shell.querySelector('#shell-content').appendChild(this);
     document.querySelector('#app').appendChild(this.shell);
 
+    this.refreshIcons();
+
     const loading = await this.getLoading();
     loading.start();
 
@@ -44,11 +46,8 @@ export default class ChatPage extends HTMLElement {
     return div.innerHTML;
   }
 
-  // Convierte el Markdown básico de Gemini (negritas, listas, párrafos) a HTML
   formatMarkdown(text) {
     let safe = this.escapeHtml(text);
-
-    // Negritas **texto**
     safe = safe.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
 
     const lines = safe.split('\n');
@@ -81,7 +80,7 @@ export default class ChatPage extends HTMLElement {
 
     if (role === 'model') {
       div.innerHTML = `
-        <div class="msg-avatar ai">💬</div>
+        <div class="msg-avatar ai"><i data-lucide="bot" class="icon-sm"></i></div>
         <div class="msg-bubble">
           <p class="msg-name">AI Coach</p>
           <div class="msg-content">${this.formatMarkdown(content)}</div>
@@ -92,12 +91,13 @@ export default class ChatPage extends HTMLElement {
         <div class="msg-bubble">
           <div class="msg-content"><p>${this.escapeHtml(content)}</p></div>
         </div>
-        <div class="msg-avatar user">👤</div>
+        <div class="msg-avatar user"><i data-lucide="user" class="icon-sm"></i></div>
       `;
     }
 
     container.appendChild(div);
     container.scrollTop = container.scrollHeight;
+    this.refreshIcons();
     return div;
   }
 
@@ -120,6 +120,10 @@ export default class ChatPage extends HTMLElement {
     }
 
     this.querySelector('#messages').scrollTop = this.querySelector('#messages').scrollHeight;
+  }
+
+  refreshIcons() {
+    if (window.lucide) window.lucide.createIcons();
   }
 
   async getLoading() {

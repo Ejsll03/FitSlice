@@ -112,8 +112,12 @@ export default class DashboardPage extends HTMLElement {
     const actLevel = this.querySelector('#activity-level');
     if (goalVal && this.user?.goal) goalVal.textContent = this.user.goal.replace(/_/g, ' ');
     if (actLevel && this.user?.activityLevel) actLevel.textContent = this.user.activityLevel.replace(/_/g, ' ');
-  }
 
+    this.refreshIcons();
+  }
+  refreshIcons() {
+  if (window.lucide) window.lucide.createIcons();
+}
   async getLoading() {
     if (!slice.controller.getComponent('Loading')) {
       return await slice.build('Loading', { sliceId: 'Loading' });

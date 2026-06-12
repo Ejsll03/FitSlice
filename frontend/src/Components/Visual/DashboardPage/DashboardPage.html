@@ -23,7 +23,9 @@
       <div class="card">
         <div class="card-header">
           <h3 class="card-title">Weekly Overview</h3>
-          <span class="card-link" id="view-plan-btn">View full plan →</span>
+          <span class="card-link" id="view-plan-btn">
+  View full plan <i data-lucide="arrow-right" class="icon-xs"></i>
+</span>
         </div>
         <div id="week-grid" class="week-grid"></div>
       </div>
@@ -41,13 +43,15 @@
 
     <div class="dash-side">
       <div class="card ai-card">
-        <div class="ai-card-header">
-          <span class="ai-icon">💬</span>
-          <span class="ai-label">AI Coach</span>
-        </div>
-        <p id="ai-summary" class="ai-text">Analyzing your profile...</p>
-        <button id="chat-btn" class="btn-outline">Ask AI Coach →</button>
-      </div>
+  <div class="ai-card-header">
+    <div class="ai-icon"><i data-lucide="bot" class="icon-md"></i></div>
+    <span class="ai-label">AI Coach</span>
+  </div>
+  <p id="ai-summary" class="ai-text">Analyzing your profile...</p>
+  <button id="chat-btn" class="btn-outline">
+    <i data-lucide="message-circle" class="icon-sm"></i> Ask AI Coach
+  </button>
+</div>
 
       <div class="card goal-card" style="margin-top:16px" id="goal-card">
         <p class="goal-label">Current Goal</p>

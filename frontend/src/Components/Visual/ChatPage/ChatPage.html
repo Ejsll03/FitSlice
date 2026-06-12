@@ -1,22 +1,24 @@
 <div class="chat-page">
   <div class="chat-header">
     <div class="chat-header-left">
-      <span class="back-link" id="back-to-dashboard">← Dashboard</span>
+      <span class="back-link" id="back-to-dashboard">
+        <i data-lucide="arrow-left" class="icon-sm"></i> Dashboard
+      </span>
       <div class="chat-header-info">
-        <span class="chat-ai-icon">💬</span>
+        <div class="chat-ai-icon"><i data-lucide="bot" class="icon-md"></i></div>
         <div>
           <p class="chat-title">AI Coach</p>
           <p class="chat-subtitle">Personalized fitness assistant</p>
         </div>
       </div>
     </div>
-    <span class="chat-status-badge">● Live</span>
+    <span class="chat-status-badge"><i data-lucide="circle" class="icon-xs"></i> Live</span>
   </div>
 
   <div id="messages" class="messages"></div>
 
   <div class="chat-composer">
     <textarea id="message-input" class="composer-input" placeholder="Ask about your plan, exercises, nutrition..." rows="1"></textarea>
-    <button id="send-btn" class="send-btn">Send</button>
+    <button id="send-btn" class="send-btn"><i data-lucide="send" class="icon-sm"></i> Send</button>
   </div>
 </div>

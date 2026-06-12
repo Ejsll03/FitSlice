@@ -52,6 +52,7 @@ INSTRUCCIONES:
 4. Varía los ejercicios a lo largo de la semana (no repitas los mismos 7 días)
 5. Adapta las comidas a las preferencias alimenticias del usuario
 6. Genera advertencias específicas según las condiciones médicas
+7. Para cada ejercicio, incluye "englishName": el nombre en inglés tal como aparecería en una base de datos de ejercicios (ExerciseDB), en minúsculas y sin acentos.
 
 Responde ÚNICAMENTE con un JSON válido con esta estructura exacta, sin texto adicional, sin markdown:
 {
@@ -62,7 +63,8 @@ Responde ÚNICAMENTE con un JSON válido con esta estructura exacta, sin texto a
       "day": "Lunes",
       "exercises": [
         {
-          "name": "nombre del ejercicio",
+          "name": "nombre del ejercicio en español",
+          "englishName": "nombre del ejercicio en inglés para buscar en una base de datos de ejercicios (ej: 'barbell squat', 'push up', 'plank', 'dumbbell row', 'jumping jacks'), en minúsculas",
           "sets": 3,
           "reps": 12,
           "bodyPart": "parte del cuerpo",
