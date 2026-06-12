@@ -1,29 +1,48 @@
-<div class="login-container">
-  <div class="login-card">
-    <div class="login-logo">
-      <span class="logo-icon">💪</span>
-      <h1>FitSlice</h1>
-      <p>Tu entrenador personal con IA</p>
+<div class="login-page">
+  <div class="login-left">
+    <div class="login-brand">
+      <div class="brand-logo">
+        <div class="logo-mark">F</div>
+        <span class="brand-name">FITSLICE</span>
+      </div>
+      <h1 class="brand-headline">TRAIN<br><span class="accent">SMARTER.</span></h1>
+      <p class="brand-desc">AI-powered fitness plans personalized to your goals, conditions, and available equipment.</p>
     </div>
+    <div class="brand-stats">
+      <div class="stat"><span class="stat-num">20+</span><span class="stat-label">Training Goals</span></div>
+      <div class="stat"><span class="stat-num">7</span><span class="stat-label">Day Plans</span></div>
+      <div class="stat"><span class="stat-num">AI</span><span class="stat-label">Powered</span></div>
+    </div>
+  </div>
 
-    <div class="login-form">
-      <div class="form-group">
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" placeholder="tucorreo@email.com" />
+  <div class="login-right">
+    <div class="form-card">
+      <h2 class="form-title">Welcome back</h2>
+      <p class="form-sub">Sign in to your account</p>
+
+      <div class="form-body">
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input class="form-input" type="email" id="email" placeholder="you@example.com" />
+          <span class="field-error" id="email-error"></span>
+        </div>
+
+        <div class="form-group">
+          <div class="label-row">
+            <label class="form-label">Password</label>
+          </div>
+          <input class="form-input" type="password" id="password" placeholder="Enter your password" />
+          <span class="field-error" id="password-error"></span>
+        </div>
+
+        <span class="global-error" id="global-error"></span>
+
+        <button class="btn-primary" id="login-btn">Sign in</button>
       </div>
 
-      <div class="form-group">
-        <label for="password">Contraseña</label>
-        <input type="password" id="password" placeholder="••••••••" />
-      </div>
-
-      <p id="error-msg" class="error-msg"></p>
-
-      <button id="login-btn" class="btn-primary">Iniciar sesión</button>
-
-      <p class="register-link">
-        ¿No tienes cuenta?
-        <span id="register-link">Regístrate aquí</span>
+      <p class="form-footer">
+        Don't have an account?
+        <span class="link-cyan" id="register-link">Create one</span>
       </p>
     </div>
   </div>

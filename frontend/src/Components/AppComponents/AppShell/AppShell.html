@@ -1,0 +1,24 @@
+<div class="app-shell">
+  <aside class="shell-sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <div class="logo-mark">F</div>
+        <div>
+          <p class="brand-name">FITSLICE</p>
+          <p class="brand-status">AI Active</p>
+        </div>
+      </div>
+      <nav id="shell-nav" class="sidebar-nav"></nav>
+    </div>
+    <div class="sidebar-bottom">
+      <button id="start-btn" class="start-btn">⚡ Start Session</button>
+      <div class="sidebar-actions">
+        <span id="theme-btn" class="sidebar-action">◑ Theme</span>
+        <span id="logout-btn" class="sidebar-action">→ Logout</span>
+      </div>
+    </div>
+  </aside>
+  <main class="shell-main" id="shell-content">
+    <slot></slot>
+  </main>
+</div>

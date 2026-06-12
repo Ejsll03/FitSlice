@@ -26,6 +26,7 @@ const components = {
   "ThemeSelector": "Visual",
   "TreeItem": "Visual",
   "TreeView": "Visual",
+  "AppShell": "AppComponents",
 
   // FitSlice Services
   "AuthService": "Service",

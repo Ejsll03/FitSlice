@@ -1,0 +1,117 @@
+.back-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: color 0.15s;
+}
+
+.back-link:hover { color: var(--cyan); }
+
+.exercise-row { flex-wrap: wrap; }
+
+.demo-btn {
+  background: transparent;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.demo-btn:hover { background: rgba(0,200,232,0.08); }
+
+.demo-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(5,13,26,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.demo-modal-content {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.demo-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  width: 28px; height: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+
+.demo-close:hover { color: var(--text-primary); }
+
+.demo-title {
+  font-family: var(--font-headline);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  padding-right: 36px;
+}
+
+.demo-gif {
+  width: 100%;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  margin-bottom: 16px;
+}
+
+.demo-instructions {
+  margin: 0 0 0 18px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.demo-instructions li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.demo-loading, .demo-empty {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 24px 0;
+}
+
+.demo-yt-link {
+  display: block;
+  text-align: center;
+  font-size: 13px;
+  color: var(--cyan);
+  text-decoration: none;
+  margin-top: 8px;
+}
+
+.demo-yt-link:hover { text-decoration: underline; }

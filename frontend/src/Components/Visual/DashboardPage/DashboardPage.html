@@ -1,0 +1,59 @@
+<div class="dashboard-page">
+  <div class="dash-header">
+    <div>
+      <p class="dash-date" id="dash-date"></p>
+      <h1 class="dash-greeting" id="greeting">Welcome back</h1>
+    </div>
+    <div class="dash-header-right">
+      <div class="bmi-badge" id="bmi-badge">
+        <span class="bmi-label">BMI</span>
+        <span class="bmi-val" id="bmi-value">--</span>
+        <span class="bmi-status" id="bmi-status">--</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="warning-card" class="warning-card" style="display:none">
+    <span class="warning-icon">⚠️</span>
+    <div id="warnings-content"></div>
+  </div>
+
+  <div class="dash-grid">
+    <div class="dash-main">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Weekly Overview</h3>
+          <span class="card-link" id="view-plan-btn">View full plan →</span>
+        </div>
+        <div id="week-grid" class="week-grid"></div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-header">
+          <h3 class="card-title">Today's Workout</h3>
+          <span class="today-tag" id="today-tag"></span>
+        </div>
+        <div id="exercise-list" class="exercise-list">
+          <p class="empty-state">Loading your plan...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-side">
+      <div class="card ai-card">
+        <div class="ai-card-header">
+          <span class="ai-icon">💬</span>
+          <span class="ai-label">AI Coach</span>
+        </div>
+        <p id="ai-summary" class="ai-text">Analyzing your profile...</p>
+        <button id="chat-btn" class="btn-outline">Ask AI Coach →</button>
+      </div>
+
+      <div class="card goal-card" style="margin-top:16px" id="goal-card">
+        <p class="goal-label">Current Goal</p>
+        <p class="goal-value" id="goal-value">--</p>
+        <p class="goal-level" id="activity-level">--</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -10,11 +10,12 @@ const EXERCISE_DB_URL = process.env.EXERCISE_DB_URL || "https://exercisedb-api.v
 // GET /api/exercises
 router.get("/", requireAuth, async (req, res) => {
   try {
-    const { bodyPart, equipment, limit = 20, offset = 0 } = req.query;
+    const { bodyPart, equipment, search, limit = 20, offset = 0 } = req.query;
 
     let url = `${EXERCISE_DB_URL}/api/v1/exercises?limit=${limit}&offset=${offset}`;
     if (bodyPart) url += `&bodyPart=${bodyPart}`;
     if (equipment) url += `&equipment=${equipment}`;
+    if (search) url += `&search=${encodeURIComponent(search)}`;
 
     const response = await axios.get(url);
     res.json(response.data);
